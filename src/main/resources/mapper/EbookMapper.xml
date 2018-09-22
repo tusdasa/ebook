@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Ebook">
+	<!-- 单条查 -->
+	<select id="findEbookById" parameterType="int"
+		resultType="net.tusdasa.domain.Ebook" useCache="true">
+		SELECT eid, title, cover, desciption, context, type, category, epub, azw3,
+		mobi, pdf FROM ebook WHERE eid = #{eid}
+	</select>
+	<select id="findEbookByType" parameterType="String"
+		resultType="net.tusdasa.domain.Ebook" useCache="true">
+		SELECT eid, title, cover, desciption, context, type, category, epub, azw3,
+		mobi, pdf FROM ebook WHERE type = #{type}
+	</select>
+	<select id="findEbookByTitle" parameterType="String"
+		resultType="net.tusdasa.domain.Ebook" useCache="true">
+		SELECT eid, title, cover, desciption, context, type, category, epub, azw3,
+		mobi, pdf FROM ebook WHERE title = #{title}
+	</select>
+	<select id="findEbookByCategory" parameterType="String"
+		resultType="net.tusdasa.domain.Ebook" useCache="true">
+		SELECT eid, title, cover, desciption, context, type, category, epub, azw3,
+		mobi, pdf FROM ebook WHERE category = #{category}
+	</select>
+	<!-- 查所有 -->
+	<select id="findAll" resultType="net.tusdasa.domain.Ebook"
+		useCache="true">
+		SELECT eid, title, cover, desciption, context, type, category, epub, azw3,
+		mobi, pdf FROM ebook
+	</select>
+	<!-- 分页查 -->
+	<select id="findEbookByPage"
+		resultType="net.tusdasa.domain.Ebook" parameterType="java.util.Map"
+		useCache="true">
+		SELECT eid, title, cover, desciption, context, type, category, epub, azw3,
+		mobi, pdf FROM ebook LIMIT #{start},#{row}
+	</select>
+	<!-- 单条增加 -->
+	<insert id="addEbook" parameterType="net.tusdasa.domain.Ebook"
+		flushCache="true">
+		INSERT INTO ebook (title, cover, desciption, context, type, category, epub,
+		mobi, azw3, pdf) VALUES (#{title}, #{cover}, #{desciption}, #{context},
+		#{type}, #{category}, #{epub}, #{mobi}, #{azw3}, #{pdf})
+	</insert>
+	<!-- 单条删除 -->
+	<delete id="delEbookById" parameterType="int" flushCache="true">
+		DELETE FROM ebook WHERE eid=#{eid}
+	</delete>
+	<!-- 单条改 -->
+	<update id="upEbookById"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET title=#{title}, cover=#{cover}, desciption=#{desciption},
+		context=#{context}, type=#{type}, category=#{category}, epub=#{epub},
+		mobi=#{mobi}, azw3=#{azw3}, pdf=#{pdf} WHERE eid=#{eid}
+	</update>
+	<update id="upEbookByTitle"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET title=#{title} WHERE eid=#{eid}
+	</update>
+	<update id="upEbookByCover"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET cover=#{cover} WHERE eid=#{eid}
+	</update>
+	<update id="upEbookByDesciption"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET desciption=#{desciption} WHERE eid=#{eid}
+	</update>
+	<update id="upEbookByContext"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET context=#{context} WHERE eid=#{eid}
+	</update>
+	<update id="upEbookByType"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET  type=#{type} WHERE eid=#{eid}
+	</update>
+	<update id="upEbookByCategory"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET category=#{category} WHERE eid=#{eid}
+	</update>
+	<update id="upEbookByEpub"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET epub=#{epub} WHERE eid=#{eid}
+	</update>
+	<update id="upEbookByMobi"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET mobi=#{mobi} WHERE eid=#{eid}
+	</update>
+	<update id="upEbookByAzw3"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET azw3=#{azw3} WHERE eid=#{eid}
+	</update>
+	<update id="upEbookByPdf"
+		parameterType="net.tusdasa.domain.Ebook" flushCache="true">
+		UPDATE ebook SET pdf=#{pdf} WHERE eid=#{eid}
+	</update>
+</mapper>

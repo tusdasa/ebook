@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+	<!-- 查所有 -->
+	<select id="findAll" resultType="net.tusdasa.domain.User"
+		useCache="true">
+		SELECT uid,username,password,email,type,status FROM user
+	</select>
+	<!-- 按ID查 -->
+	<select id="findUserByUsername" resultType="net.tusdasa.domain.User"
+		parameterType="String" useCache="true">
+		SELECT
+		uid,username,password,email,type,status FROM user WHERE username =#{username}
+	</select>
+	<select id="findUserByEmail" resultType="net.tusdasa.domain.User"
+		parameterType="String" useCache="true">
+		SELECT
+		uid,username,password,email,type,status FROM user WHERE email =#{email}
+	</select>
+	<select id="findUserById" resultType="net.tusdasa.domain.User"
+		parameterType="String" useCache="true">
+		SELECT
+		uid,username,password,email,type,status FROM user WHERE uid =#{uid}
+	</select>
+	<!-- 分页查 -->
+	<select id="findUserByPage" resultType="net.tusdasa.domain.User"
+		parameterType="java.util.Map" useCache="true">
+		SELECT
+		uid,username,password,email,type,status FROM user LIMIT #{start},
+		#{row}
+	</select>
+	<!-- 单条删 -->
+	<delete id="delUserById" parameterType="int" flushCache="true">
+		DELETE
+		FROM user WHERE uid=#{uid}
+	</delete>
+	<!-- 单条增加 -->
+	<insert id="addUser" parameterType="net.tusdasa.domain.User"
+		flushCache="true">
+		INSERT INTO user (username,password,email,type,status)
+		VALUES (#{username},#{password},#{email},#{type},#{status})
+	</insert>
+	<!-- 单条改 -->
+	<update id="upUserById" parameterType="net.tusdasa.domain.User"
+		flushCache="true">
+		UPDATE user SET username=#{username}, password=#{password},
+		email=#{email}, type=#{type}, status=#{status} WHERE uid=#{uid}
+	</update>
+	<update id="upUserByUsername" parameterType="net.tusdasa.domain.User"
+		flushCache="true">
+		UPDATE user SET username=#{username} WHERE uid=#{uid}
+	</update>
+	<update id="upUserByPassword" parameterType="net.tusdasa.domain.User"
+		flushCache="true">
+		UPDATE user SET  password=#{password} WHERE uid=#{uid}
+	</update>
+	<update id="upUserByEmail" parameterType="net.tusdasa.domain.User"
+		flushCache="true">
+		UPDATE user SET email=#{email} WHERE uid=#{uid}
+	</update>
+	<update id="upUserByType" parameterType="net.tusdasa.domain.User"
+		flushCache="true">
+		UPDATE user SET type=#{type} WHERE uid=#{uid}
+	</update>
+	<update id="upUserByStatus" parameterType="net.tusdasa.domain.User"
+		flushCache="true">
+		UPDATE user SET status=#{status} WHERE uid=#{uid}
+	</update>
+</mapper>

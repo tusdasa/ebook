@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Article">
+	<select id="findArticleAll"
+		resultType="net.tusdasa.domain.Article" useCache="true">
+		SELECT aid, title, author, time, category, text FROM article
+	</select>
+	<select id="findArticleById"
+		resultType="net.tusdasa.domain.Article" parameterType="int"
+		useCache="true">
+		SELECT aid, title, author, time, category, text FROM article WHERE
+		aid=#{aid}
+	</select>
+	<select id="findArticleByTitle"
+		resultType="net.tusdasa.domain.Article" parameterType="String"
+		useCache="true">
+		SELECT aid, title, author, time, category, text FROM article WHERE
+		title=#{title}
+	</select>
+	<select id="findArticleByCategory"
+		resultType="net.tusdasa.domain.Article" parameterType="String"
+		useCache="true">
+		SELECT aid, title, author, time, category, text FROM article WHERE
+		category=#{category}
+	</select>
+	<select id="findArticleByTime"
+		resultType="net.tusdasa.domain.Article" useCache="true">
+		SELECT aid, title, author, time, category, text FROM article ORDER BY time
+		DESC
+	</select>
+	<select id="findArticleByTimeAndPage"
+		resultType="net.tusdasa.domain.Article" useCache="true">
+		SELECT aid, title, author, time, category, text FROM article ORDER BY time
+		DESC LIMIT #{start}, #{row}
+	</select>
+	<select id="findArticleByPage"
+		resultType="net.tusdasa.domain.Article" parameterType="java.util.Map"
+		useCache="true">
+		SELECT aid, title, author, time, category, text FROM article LIMIT #{start},
+		#{row}
+	</select>
+	<insert id="addArticle"
+		parameterType="net.tusdasa.domain.Article" flushCache="true">
+		INSERT INTO article (title, author, time, category, text) VALUES
+		(#{title},#{author} ,#{time} ,#{category} ,#{text})
+	</insert>
+	<delete id="delArticleById" parameterType="int"
+		flushCache="true">
+		DELETE FROM article WHERE aid=#{aid}
+	</delete>
+	<update id="upArticle"
+		parameterType="net.tusdasa.domain.Article" flushCache="true">
+		UPDATE article SET title=#{title}, author=#{author}, time=#{time},
+		category=#{category}, text=#{text} WHERE aid=#{aid}
+	</update>
+	<update id="upArticleByTitle"
+		parameterType="net.tusdasa.domain.Article" flushCache="true">
+		UPDATE article SET title=#{title} WHERE aid=#{aid}
+	</update>
+	<update id="upArticleByTitle"
+		parameterType="net.tusdasa.domain.Article" flushCache="true">
+		UPDATE article SET time=#{time} WHERE aid=#{aid}
+	</update>
+	<update id="upArticleByCategory"
+		parameterType="net.tusdasa.domain.Article" flushCache="true">
+		UPDATE article SET category=#{category} WHERE aid=#{aid}
+	</update>
+	<update id="upArticleByText"
+		parameterType="net.tusdasa.domain.Article" flushCache="true">
+		UPDATE article SET text=#{text} WHERE aid=#{aid}
+	</update>
+	<update id="upArticleByAuthor"
+		parameterType="net.tusdasa.domain.Article" flushCache="true">
+		UPDATE article SET author=#{author} WHERE aid=#{aid}
+	</update>
+</mapper>

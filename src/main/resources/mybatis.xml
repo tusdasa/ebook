@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<environments default="development">
+		<environment id="development">
+		<transactionManager type="JDBC" />
+			<dataSource type="net.tusdasa.utils.DataSourceFactory">
+				<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/ebook" />
+				<property name="driverClass" value="com.mysql.jdbc.Driver" />
+				<property name="user" value="root" />
+				<property name="password" value="root" />
+				<property name="checkoutTimeout" value="30000" />
+				<property name="idleConnectionTestPeriod" value="30" />
+				<property name="initialPoolSize" value="10" />
+				<property name="maxIdleTime" value="30" />
+				<property name="maxPoolSize" value="100" />
+				<property name="minPoolSize" value="10" />
+				<property name="maxStatements" value="200" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="mapper/UserMapper.xml"/>
+		<mapper resource="mapper/EbookMapper.xml"/>
+		<mapper resource="mapper/ArticleMapper.xml"/>
+		<mapper resource="mapper/CategoryMapper.xml"/>
+	</mappers>
+</configuration>
